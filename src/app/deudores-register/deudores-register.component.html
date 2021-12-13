@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">NG USERS</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/home">Mostrar Usuarios</a>
+      <a class="nav-item nav-link active" href="/registrar-deudor">
+        Registrar Deudor</a
+      >
+      <a class="nav-item nav-link" href="/ver-deudas">
+        Ver deudas y deudores
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="containter-app bg-white mt-2 rounded shadow">
+  <h2 class="fw-bold text-center pt-5 mb-5">Registro de deudas</h2>
+
+  <!--
+                Formulario de register
+            -->
+  <form [formGroup]="dataDebt">
+    <div class="mb-4">
+      <label for="tipo" class="form-label">tipo de deuda</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tipo"
+        placeholder="0: Le debo dinero; 1: Me debe dinero"
+        required
+        formControlName="tipo"
+      />
+
+      <div class="mb-4">
+        <label for="comentario" class="form-label">Comentario</label>
+        <input
+          type="text"
+          class="form-control"
+          name="comentario"
+          formControlName="comentario"
+          placeholder="Ejemplo: Deuda con Juan"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="involucradoId" class="form-label"
+          >ID del Usuario Involucrado</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          name="involucradoId"
+          required
+          placeholder="Ejemplo: 1"
+          formControlName="involucradoId"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="involucradoId" class="form-label">valor</label>
+        <input
+          type="number"
+          class="form-control"
+          name="valor"
+          required
+          formControlName="valor"
+          placeholder="Ejemplo: $1000"
+        />
+      </div>
+      <div class="col text-center">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="width: 20%"
+          [disabled]="!dataDebt.valid"
+          (click)="registerDebt()"
+        >
+          Registrar deuda
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

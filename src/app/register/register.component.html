@@ -1,0 +1,138 @@
+<body class="bg-dark">
+  <div class="container w-75 bg-primary mt-5 rounded shadow">
+    <div class="row align-items-center align-items-stretch">
+      <div
+        class="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded bg"
+      ></div>
+
+      <div class="col bg-white p-5 col-lg-7 col-xl-6 rounded-end">
+        <h2 class="fw-bold text-center pt-5 mb-5">Registro</h2>
+
+        <!--
+                  Formulario de register
+              -->
+        <form [formGroup]="form">
+          <div class="mb-4">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              required
+              formControlName="nombre"
+              autocomplete="off"
+            />
+            <p
+              *ngIf="
+                formReactive.nombre?.errors?.required &&
+                (formReactive.nombre?.errors?.minLength ||
+                  formReactive.nombre?.errors?.maxLength) &&
+                formReactive.nombre?.touched
+              "
+              class="invalid-feedback"
+            >
+              nombre requerido y debe tener entre 3 y 15 caracteres
+            </p>
+            <div class="mb-4">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                name="apellido"
+                formControlName="apellido"
+                autocomplete="off"
+                required
+              />
+              <p
+                *ngIf="
+                  formReactive.apellido?.errors?.required &&
+                  formReactive.apellido?.errors?.minLength
+                "
+              >
+                apellido requerido
+              </p>
+            </div>
+            <div class="mb-4">
+              <label for="telefono" class="form-label">Telefono</label>
+              <input
+                type="tel"
+                class="form-control"
+                name="telefono"
+                pattern="[0-9]{9}"
+                formControlName="telefono"
+                autocomplete="off"
+                required
+              />
+              <p
+                *ngIf="
+                  formReactive.telefono?.errors?.required &&
+                  formReactive.telefono?.touched
+                "
+                class="invalid-feedback"
+              >
+                telefono requerido
+              </p>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                required
+                formControlName="correo"
+                autocomplete="off"
+              />
+              <p
+                *ngIf="
+                  formReactive.correo?.errors?.required &&
+                  formReactive.correo?.errors?.maxLength &&
+                  formReactive.correo?.touched
+                "
+                class="invalid-feedback"
+              >
+                email requerido
+              </p>
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                autocomplete="off"
+                formControlName="password"
+                required
+              />
+              <p
+                *ngIf="
+                  formReactive.password?.errors?.required &&
+                  formReactive.password?.errors?.minlength &&
+                  formReactive.password?.touched
+                "
+                class="invalid-feedback"
+              >
+                contraseña requerido
+              </p>
+            </div>
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="sendData()"
+                [disabled]="!form.valid"
+              >
+                Registrarme
+              </button>
+            </div>
+          </div>
+          <div class="my-3">
+            <span>ya tienes una cuenta? <a href="/login">Accede</a></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="bootstrap.bundle.min.js"></script>
+</body>

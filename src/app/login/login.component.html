@@ -1,0 +1,65 @@
+<body class="bg-dark">
+  <div class="container w-75 bg-primary mt-5 rounded shadow">
+    <div class="row align-items-center align-items-stretch">
+      <div
+        class="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded bg"
+      ></div>
+
+      <div class="col bg-white p-5 col-lg-7 col-xl-6 rounded-end">
+        <h2 class="fw-bold text-center pt-5 mb-5">Login</h2>
+
+        <!--
+                  Formulario de login
+              -->
+        <form [formGroup]="formLogin">
+          <div class="mb-4">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              required
+              formControlName="correo"
+            />
+            <p
+              *ngIf="
+                formReactive.correo?.errors?.required &&
+                formReactive.correo?.touched
+              "
+              class="invalid-feedback"
+            >
+              nombre requerido
+            </p>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              formControlName="password"
+              required
+            />
+          </div>
+          <div class="d-grid">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="login()"
+              [disabled]="!formLogin.valid"
+            >
+              Iniciar sesión
+            </button>
+          </div>
+          <div class="my-3">
+            <span
+              >No tienes una cuenta? <a href="/register">Regístrate</a></span
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="bootstrap.bundle.min.js"></script>
+</body>

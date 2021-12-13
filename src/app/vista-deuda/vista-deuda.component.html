@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">NG USERS</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/home">Mostrar Usuarios</a>
+      <a class="nav-item nav-link" href="/registrar-deudor">
+        Registrar Deudor</a
+      >
+      <a class="nav-item nav-link active" href="/ver-deudas">
+        Ver deudas y deudores
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="containter-app bg-white mt-2 rounded shadow"
+  *ngIf="dataDebo?.length > 0"
+>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">comentario</th>
+            <th scope="col">fecha de creacion</th>
+            <th scope="col">fecha de finalización</th>
+            <th scope="col">valor</th>
+            <th scope="col">acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let debo of dataDebo">
+            <td>{{ debo.comentario }}</td>
+            <td>{{ debo.fecha_creacion.split("T")[0] }}</td>
+            <td>
+              {{
+                debo.fecha_finalizacion
+                  ? debo.fecha_finalizacion.split("T")[0]
+                  : "No finalizado"
+              }}
+            </td>
+            <td>{{ debo.valor }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="notificarDeuda(debo.id)"
+              >
+                notificar
+              </button>
+              <br />
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="finalizarDeuda(debo.id)"
+              >
+                finalizar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div
+  class="containter-app bg-white mt-2 rounded shadow"
+  *ngIf="dataDeben?.length > 0"
+>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">comentario</th>
+            <th scope="col">fecha de creacion</th>
+            <th scope="col">fecha de finalización</th>
+            <th scope="col">valor</th>
+            <th scope="col">acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deben of dataDeben">
+            <td>{{ deben.comentario }}</td>
+            <td>{{ deben.fecha_creacion.split("T")[0] }}</td>
+            <td>
+              {{
+                deben.fecha_finalizacion
+                  ? deben.fecha_finalizacion.split("T")[0]
+                  : "No finalizado"
+              }}
+            </td>
+            <td>{{ deben.valor }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="notificarDeuda(deben.id)"
+              >
+                notificar
+              </button>
+              <br />
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="finalizarDeuda(deben.id)"
+              >
+                finalizar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div
+  class="containter-lazy bg-white mt-2 rounded shadow"
+  *ngIf="dataDeben?.length === 0 && dataDebo?.length === 0"
+>
+  <div class="text-center">
+    <h1>No hay deudas</h1>
+  </div>
+</div>
