@@ -1,0 +1,26 @@
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(115, 0, 76, 1) 35%,
+    rgba(34, 57, 61, 1) 100%
+  );
+}
+
+.bg {
+  background-image: url("https://blog.nubox.com/hubfs/historia-contabilidad.png");
+  background-position: center center;
+}
+
+.containter-app {
+  width: 98%;
+  height: auto;
+  margin-left: 20px;
+}
+
+.containter-lazy {
+  width: 98%;
+  height: 98%;
+  margin-left: 20px;
+}
